@@ -1,0 +1,15 @@
+﻿@page "/fetch"
+@inject HttpClient http
+
+<h1>Fetching!</h1>
+
+@code {
+
+    protected override async Task OnInitializedAsync()
+    {
+        var res = await http.GetAsync(new Uri("https://www.google.com"));
+    }
+
+}
+
+
