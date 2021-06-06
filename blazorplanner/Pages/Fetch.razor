@@ -1,13 +1,17 @@
 ﻿@page "/fetch"
 @inject HttpClient http
+@attribute [Authorize]
 
 <h1>Fetching!</h1>
 
 @code {
 
+    [CascadingParameter]
+    public Task<AuthenticationState> AuthState { get; set; }
+
     protected override async Task OnInitializedAsync()
     {
-        var res = await http.GetAsync(new Uri("https://www.google.com"));
+        var res = await http.GetAsync(new Uri("https://plannerapp-api.azurewebsites.net/api/v2/Plans"));
     }
 
 }

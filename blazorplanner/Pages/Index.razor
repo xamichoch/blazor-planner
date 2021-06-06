@@ -1,11 +1,21 @@
 ﻿@page "/"
+@inject ISnackbar snackbar
 
-<h1>Hello, worsdada!</h1>
-<MudAlert
-          Severity="Severity.Info"
-          Variant="Variant.Outlined"
-          Square="true"
-          Class="my-2">The reasdasactor was fired up ciaoasdad
-</MudAlert>
-
-Welcome to your new app.
+<AuthorizeView>
+    <Authorized>        
+        <MudAlert Severity="Severity.Success"
+                  Variant="Variant.Outlined"
+                  Square="true"
+                  Class="my-2">
+            Welcome in our site @context.User.FindFirst(System.Security.Claims.ClaimTypes.GivenName).Value
+        </MudAlert>
+    </Authorized>
+    <NotAuthorized>
+        <MudAlert Severity="Severity.Warning"
+                  Variant="Variant.Outlined"
+                  Square="true"
+                  Class="my-2">
+            Please login
+        </MudAlert>
+    </NotAuthorized>
+</AuthorizeView>
